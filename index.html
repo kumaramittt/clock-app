@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="dark" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Chronos Clock & Timer</title>
+    <meta name="description" content="Mobile-friendly dark mode Clock PWA with Alarms, World Clock, millisecond Stopwatch with laps, and circular countdown Timer." />
+    <meta property="og:title" content="Chronos Clock & Timer" />
+    <meta property="og:description" content="Mobile-friendly dark mode Clock PWA with Alarms, World Clock, millisecond Stopwatch with laps, and circular countdown Timer." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" id="theme-color-meta" content="#0F0F10" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Chronos" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('chronos_settings_v2');
+          var theme = 'dark';
+          if (saved) {
+            var parsed = JSON.parse(saved);
+            if (parsed && parsed.theme) theme = parsed.theme;
+          }
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
+          var root = document.documentElement;
+          root.classList.remove('dark', 'light');
+          root.classList.add(effectiveTheme);
+          root.setAttribute('data-theme', effectiveTheme);
+
+          var metaTheme = document.getElementById('theme-color-meta');
+          if (metaTheme) {
+            metaTheme.setAttribute('content', effectiveTheme === 'dark' ? '#0F0F10' : '#F5F5F7');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[var(--bg)] text-[var(--text)] antialiased select-none overflow-x-hidden min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

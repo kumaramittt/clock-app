@@ -1,0 +1,6 @@
+{
+  "name": "Chronos Clock & Timer",
+  "description": "Mobile-friendly dark mode Clock PWA with Alarms, World Clock, millisecond Stopwatch with laps, and circular countdown Timer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
